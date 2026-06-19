@@ -3,6 +3,11 @@
 > **Research Date:** June 19, 2026  
 > **Status:** Pre-launch business — "Coming Soon"
 
+## Project Files
+
+- `../main.html`: Main landing page file (moved from `../src/index.html`).
+- `../src/`: Removed; no longer used.
+
 ## Data Files
 
 | File | Contents |
