@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>كرافيو | Cravio — تجربة تُحكى بـ أناقة خالصة</title>
-  <meta name="description" content="كرافيو — حلويات فاخرة في سحاب، عمّان. كوكيز محشي، كيك، دونات، وشوكولاتة. Crave it. Love it. Repeat.">
+  <title>كرافيو | Cravio تجربة تُحكى بـ أناقة خالصة</title>
+  <meta name="description" content="كرافيو حلويات فاخرة في العبدلية، سحاب. كوكيز محشي، كيك، دونات، وشوكولاتة. Crave it. Love it. Repeat.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,7 @@
 
   <style>
     /* ===================================================================
-       CRAVIO — DESIGN SYSTEM
+       CRAVIO DESIGN SYSTEM
        Colors sourced from actual Cravio brand + Instagram profile
        =================================================================== */
 
@@ -104,29 +104,39 @@
        =================================================================== */
     .header {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: oklch(0.24 0.040 260 / 0.88);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid oklch(0.40 0.040 260 / 0.35);
-      transition: background 0.35s var(--ease-out-quart);
+      padding: var(--space-sm) var(--space-md);
+      transition: padding 0.35s var(--ease-out-quart);
     }
-    .header.is-scrolled { background: oklch(0.18 0.045 260 / 0.94); border-bottom-color: var(--border); }
+    .header.is-scrolled { padding: 6px var(--space-md); }
     .header-inner {
       display: flex; align-items: center; justify-content: space-between;
-      max-width: 1152px; margin: 0 auto; padding: 12px var(--space-md);
+      max-width: 1152px; margin: 0 auto;
+      padding: 10px var(--space-lg);
+      border-radius: 100px;
+      background: oklch(0.22 0.038 260 / 0.35);
+      backdrop-filter: blur(32px);
+      -webkit-backdrop-filter: blur(32px);
+      border: 1px solid oklch(0.69 0.11 78 / 0.08);
+      box-shadow: 0 8px 32px oklch(0 0 0 / 0.2);
+      transition: background 0.35s var(--ease-out-quart), border-color 0.35s, box-shadow 0.35s;
+    }
+    .header.is-scrolled .header-inner {
+      background: oklch(0.18 0.045 260 / 0.50);
+      border-color: oklch(0.69 0.11 78 / 0.07);
+      box-shadow: 0 4px 20px oklch(0 0 0 / 0.3);
     }
     .logo {
-      display: flex; align-items: center; gap: 2px;
+      display: inline-block; position: relative;
     }
     .logo img { height: 28px; width: auto; }
-    .logo-fallback {
-      font-family: var(--font-logo); font-size: 22px; font-weight: 600;
-      color: var(--ink); letter-spacing: 0.02em;
-      position: relative;
+    .logo-wordmark {
+      font-family: var(--font-logo); font-size: 32px; font-weight: 600;
+      color: var(--ink); letter-spacing: 0.01em; line-height: 1.05;
+      position: relative; display: inline-block;
     }
-    .logo-fallback::before {
-      content: '✦'; position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
-      font-size: 10px; color: var(--ink); line-height: 1;
+    .logo-wordmark::before {
+      content: '✦'; position: absolute; top: -0.35em; left: 50%; transform: translateX(-50%);
+      font-size: 0.35em; color: var(--ink); line-height: 1;
     }
     .header-cta {
       display: inline-flex; align-items: center; gap: 6px;
@@ -158,12 +168,12 @@
     }
     .hero-bg img {
       width: 100%; height: 100%; object-fit: cover;
-      opacity: 0.14; filter: saturate(0.3) brightness(0.5);
+      opacity: 0.5; filter: saturate(0.6) brightness(0.7);
     }
     .hero-bg::after {
       content: ''; position: absolute; inset: 0;
       background: radial-gradient(ellipse at 50% 30%, oklch(0.25 0.06 78 / 0.06) 0%, transparent 60%),
-                  linear-gradient(180deg, oklch(0.08 0.02 258 / 0.5), var(--bg-hero) 100%);
+                  linear-gradient(180deg, oklch(0.08 0.02 258 / 0.05), var(--bg-hero) 100%);
     }
     .hero-content {
       position: relative; z-index: 1;
@@ -222,7 +232,7 @@
     }
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 14px 28px; border-radius: 50px;
+      padding: 14px 40px; border-radius: 50px;
       font-weight: 600; font-size: 14px;
       transition: all 0.3s var(--ease-out-quart);
       font-family: var(--font-arabic);
@@ -279,19 +289,35 @@
     }
     @media (min-width: 768px) { .categories { grid-template-columns: repeat(4, 1fr); } }
     .cat-card {
-      background: var(--bg-surface); border: 1px solid var(--border);
-      border-radius: 14px; padding: var(--space-lg) var(--space-md);
-      text-align: center; transition: transform 0.3s var(--ease-out-quart), border-color 0.3s;
+      position: relative; isolation: isolate;
+      border-radius: 14px; overflow: hidden;
+      min-height: 180px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: var(--space-lg) var(--space-md);
+      text-align: center;
+      border: 1px solid var(--border);
+      transition: transform 0.3s var(--ease-out-quart), border-color 0.3s;
     }
     .cat-card:hover { transform: translateY(-3px); border-color: oklch(0.69 0.11 78 / 0.18); }
-    .cat-icon {
-      display: flex; align-items: center; justify-content: center;
-      width: 52px; height: 52px; margin: 0 auto var(--space-sm);
-      border-radius: 50%; background: var(--gold-soft);
-      color: var(--gold-light);
+    .cat-card img {
+      position: absolute; inset: 0; z-index: 0;
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.4s var(--ease-out-quart);
     }
-    .cat-name { font-size: clamp(16px, 1.8vw, 19px); font-weight: 700; color: var(--ink); margin-bottom: 4px; }
-    .cat-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.6; }
+    .cat-card:hover img,
+    .cat-card.active img { transform: scale(1.06); }
+    .cat-card::after {
+      content: ''; position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(180deg, oklch(0 0 0 / 0.4) 0%, oklch(0 0 0 / 0.7) 100%);
+    }
+    .cat-name { position: relative; z-index: 2; font-size: clamp(16px, 1.8vw, 19px); font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+    .cat-desc {
+      position: relative; z-index: 2; font-size: 13px; color: var(--ink-muted); line-height: 1.6;
+      opacity: 0; transform: translateY(6px);
+      transition: opacity 0.3s var(--ease-out-quart), transform 0.3s var(--ease-out-quart);
+    }
+    .cat-card:hover .cat-desc,
+    .cat-card.active .cat-desc { opacity: 1; transform: translateY(0); }
 
     /* ===================================================================
        STORY
@@ -341,9 +367,11 @@
 
     /* ── Bestseller badge ── */
     .badge-best {
-      display: inline-flex; padding: 3px 10px; border-radius: 50px;
-      font-family: var(--font-english); font-size: 10px; font-weight: 700;
-      background: var(--gold); color: var(--bg); white-space: nowrap; flex-shrink: 0;
+      position: absolute; top: var(--space-sm); left: var(--space-sm);
+      z-index: 2; padding: 6px 16px; border-radius: 50px;
+      font-family: var(--font-arabic); font-size: 13px; font-weight: 900;
+      background: var(--gold); color: var(--bg); white-space: nowrap;
+      letter-spacing: 0.02em;
     }
 
     /* ===================================================================
@@ -440,12 +468,12 @@
   <!-- ========== HEADER ========== -->
   <header class="header anim-reveal-down">
     <div class="header-inner">
-      <a href="#" class="logo" aria-label="كرافيو — الرئيسية">
-        <span class="logo-fallback" aria-hidden="true">cravio</span>
+      <a href="#" class="logo" aria-label="كرافيو الرئيسية">
+        <span class="logo-wordmark" aria-hidden="true">cravio</span>
       </a>
-      <a href="https://www.instagram.com/cravio.jo/" target="_blank" rel="noopener noreferrer" class="header-cta">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        <span>انستغرام</span>
+      <a href="#" class="header-cta">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span>المنيو تبعنا</span>
       </a>
     </div>
   </header>
@@ -456,16 +484,12 @@
       <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1600&q=80" alt="" loading="eager" decoding="async">
     </div>
     <div class="hero-content">
-      <a href="https://maps.app.goo.gl/Ms2a98VPTbuf4GHw5" target="_blank" rel="noopener noreferrer" class="hero-badge anim-fade-in">
-        <span class="hero-dot" aria-hidden="true"></span>
-        قريباً — سحاب، عمّان
-      </a>
       <h1 class="hero-wordmark anim-fade-up" id="hero-heading">
         cravio
-        <span class="hero-tagline anim-fade-up anim-stagger-1">تجربة تُحكى بـ أناقة خالصة</span>
+        <span class="hero-tagline anim-fade-up anim-stagger-1">تجربة تُحكى بأناقة خالصة</span>
       </h1>
       <p class="hero-desc anim-fade-up anim-stagger-2">
-        حلويات فاخرة للناس اللي بتعرف إنه كل مناسبة بدها شي مش عادي. من قلب الشغف، بنصنع لحظات ما بتتنسى.
+        حلويات فاخرة للناس اللي بتعرف إنه كل مناسبة بدها شي مش عادي.
       </p>
       <div class="hero-actions anim-fade-up anim-stagger-3">
         <a href="https://www.instagram.com/cravio.jo/" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
@@ -478,7 +502,7 @@
       </div>
       <a href="https://maps.app.goo.gl/Ms2a98VPTbuf4GHw5" target="_blank" rel="noopener noreferrer" class="hero-location anim-fade-up anim-stagger-4">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        العبدلية - سحاب
+        موقعنا: العبدلية، سحاب
       </a>
     </div>
     <div class="scroll-hint" aria-hidden="true">
@@ -495,32 +519,24 @@
       </header>
       <div class="categories">
         <div class="cat-card reveal">
-          <div class="cat-icon" aria-hidden="true">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M7 12a5 5 0 0 1 10 0"/><circle cx="8.5" cy="9.5" r="1" fill="currentColor"/><circle cx="15.5" cy="9.5" r="1" fill="currentColor"/></svg>
-          </div>
+          <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy">
           <h3 class="cat-name">كوكيز محشي</h3>
           <p class="cat-desc">طري من جوا، مقرمش من برا، ومحشي بإيدينا</p>
         </div>
         <div class="cat-card reveal">
-          <div class="cat-icon" aria-hidden="true">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M4 20V10a8 8 0 1 1 16 0v10"/><circle cx="11" cy="8" r="2"/><circle cx="13" cy="5" r="1"/></svg>
-          </div>
+          <img src="https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy">
           <h3 class="cat-name">كيك فاخر</h3>
           <p class="cat-desc">لكل مناسبة إلها كيكتها، بنصممها زي ما بتحب</p>
         </div>
         <div class="cat-card reveal">
-          <div class="cat-icon" aria-hidden="true">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
-          </div>
+          <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy">
           <h3 class="cat-name">دونات حرفي</h3>
           <p class="cat-desc">طري وهش ومغطى بطبقات بتجنن، طازج كل يوم</p>
         </div>
         <div class="cat-card reveal">
-          <div class="cat-icon" aria-hidden="true">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2"/><line x1="3" y1="12" x2="21" y2="12"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>
-          </div>
+          <img src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy">
           <h3 class="cat-name">شوكولاتة</h3>
-          <p class="cat-desc">للي بحبوا الشوكولاتة بجد — غني، فاخر، مش عادي</p>
+          <p class="cat-desc">للي بحبوا الشوكولاتة بجد غني، فاخر، مش عادي</p>
         </div>
       </div>
     </div>
@@ -532,10 +548,10 @@
       <div class="story-inner reveal">
         <h2 class="sr-only" id="story-heading">قصتنا</h2>
         <p class="story-quote">
-          من قلب الشغف بلشت حكاية حلايانا. بنآمن إنه كل لقمة إلها حكاية، وكل تجربة لازم تنحكى بـ أناقة. إحنا في كرافيو ما بنصنع حلويات بس — بنصنع لحظات.
+          من قلب الشغف بلشت حكاية حلايانا. بنآمن إنه كل لقمة إلها حكاية، وكل تجربة لازم تنحكى بـ أناقة. إحنا في كرافيو ما بنصنع حلويات بس .. بنصنع لحظات.
         </p>
         <div class="story-divider" aria-hidden="true"></div>
-        <p class="story-meta">Cravio — Crave it. Love it. Repeat.</p>
+        <p class="story-meta">Cravio · Crave it. Love it. Repeat.</p>
       </div>
     </div>
   </section>
@@ -549,24 +565,20 @@
       </header>
       <div class="products-grid">
         <article class="product-card reveal">
+          <span class="badge-best">الأكثر مبيعاً</span>
           <div class="product-img">
             <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=600&q=80" alt="كوكيز ريد فيلفيت محشية بشوكولاتة بيضاء وجبنة كريمية" loading="lazy">
           </div>
           <div class="product-body">
-            <div>
-              <h3 class="product-name">كوكيز ريد فيلفيت</h3>
-              <span class="badge-best" style="margin-top:4px;">BESTSELLER</span>
-            </div>
-            <span class="product-price" dir="ltr">2.50 JOD</span>
+            <h3 class="product-name">كوكيز ريد فيلفيت</h3>
           </div>
         </article>
         <article class="product-card reveal">
           <div class="product-img">
-            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80" alt="كيك الشوكولاتة الفدج — أربع طبقات بغاناش ناعم" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80" alt="كيك الشوكولا فدج أربع طبقات بغاناش ناعم" loading="lazy">
           </div>
           <div class="product-body">
-            <h3 class="product-name">كيك الشوكولاتة الفدج</h3>
-            <span class="product-price" dir="ltr">من 18 JOD</span>
+            <h3 class="product-name">كيك الشوكولا (فدج)</h3>
           </div>
         </article>
         <article class="product-card reveal">
@@ -575,7 +587,6 @@
           </div>
           <div class="product-body">
             <h3 class="product-name">دونات الشوكولاتة</h3>
-            <span class="product-price" dir="ltr">1.75 JOD</span>
           </div>
         </article>
         <article class="product-card reveal">
@@ -584,7 +595,6 @@
           </div>
           <div class="product-body">
             <h3 class="product-name">كوكيز لوتس</h3>
-            <span class="product-price" dir="ltr">2.75 JOD</span>
           </div>
         </article>
         <article class="product-card reveal">
@@ -593,16 +603,14 @@
           </div>
           <div class="product-body">
             <h3 class="product-name">حلم الفستق</h3>
-            <span class="product-price" dir="ltr">3.00 JOD</span>
           </div>
         </article>
         <article class="product-card reveal">
           <div class="product-img">
-            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80" alt="كيك لافا شوكولاتة داكنة بقلب سائل مع آيس كريم" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1541783245831-57d6fb0926d3?auto=format&fit=crop&w=600&q=80" alt="كيك لافا شوكولاتة داكنة بقلب سائل مع آيس كريم" loading="lazy">
           </div>
           <div class="product-body">
             <h3 class="product-name">كيك لافا شوكولاتة</h3>
-            <span class="product-price" dir="ltr">5.50 JOD</span>
           </div>
         </article>
       </div>
@@ -617,7 +625,7 @@
           <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80" alt="" loading="lazy">
         </div>
         <h2 class="banner-title" id="custom-heading">بدك كيكة ع كيفك؟</h2>
-        <p class="banner-desc">أعياد ميلاد، أعراس، تخرج، ولا أي مناسبة — إحنا بنصمم كيكة أحلامك. تواصل معنا وبلش القصة.</p>
+        <p class="banner-desc">أعياد ميلاد، أعراس، تخرج، ولا أي مناسبة إحنا بنصمم كيكة أحلامك. تواصل معنا وبلش القصة.</p>
         <a href="https://www.instagram.com/cravio.jo/" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
           تواصل معنا
@@ -630,24 +638,23 @@
   <footer class="footer" role="contentinfo">
     <div class="footer-inner">
       <div class="footer-brand">
-        <span class="logo-fallback" style="font-size:18px;" aria-hidden="true">cravio</span>
+        <span class="logo-wordmark" style="font-size:32px;" aria-hidden="true">cravio</span>
       </div>
       <div class="footer-links">
         <a href="https://www.instagram.com/cravio.jo/" target="_blank" rel="noopener noreferrer">انستغرام</a>
-        <a href="https://www.facebook.com/61587914705670" target="_blank" rel="noopener noreferrer">فيسبوك</a>
         <a href="tel:+962770128014">اتصل فينا</a>
-        <span class="font-en" dir="ltr" style="color:var(--ink-muted);font-size:13px;">+962 77 012 8014</span>
-        <span style="color:var(--ink-faint);font-size:13px;">سحاب، عمّان</span>
+        <a href="tel:+962770128014" class="font-en" dir="ltr" style="color:var(--ink-muted);font-size:13px;">+962 77 012 8014</a>
+        <a href="https://maps.app.goo.gl/Ms2a98VPTbuf4GHw5" target="_blank" rel="noopener noreferrer" style="color:var(--ink-faint);font-size:13px;display:inline-flex;align-items:center;gap:4px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px;flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          موقعنا: العبدلية، سحاب
+        </a>
       </div>
       <div class="footer-socials">
         <a href="https://www.instagram.com/cravio.jo/" target="_blank" rel="noopener noreferrer" aria-label="انستغرام Cravio">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
         </a>
-        <a href="https://www.facebook.com/61587914705670" target="_blank" rel="noopener noreferrer" aria-label="فيسبوك Cravio">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </a>
       </div>
-      <p class="footer-copy">&copy; 2026 Cravio. All Rights Reserved. &mdash; سحاب، عمّان، الأردن</p>
+      <p class="footer-copy">&copy; 2026 Cravio. All Rights Reserved. &mdash; العبدلية، سحاب، الأردن</p>
     </div>
   </footer>
 
@@ -684,6 +691,13 @@
       });
     }, { rootMargin: '0px 0px 40px 0px', threshold: 0.1 });
     reveals.forEach(function(el) { el.classList.add('is-offscreen'); observer.observe(el); });
+
+    var catCards = document.querySelectorAll('.cat-card');
+    catCards.forEach(function(card) {
+      card.addEventListener('click', function() {
+        this.classList.toggle('active');
+      });
+    });
   })();
   </script>
 </body>
